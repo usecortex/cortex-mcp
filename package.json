@@ -1,0 +1,33 @@
+{
+  "name": "@anthropic/cortex-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Cortex AI — State-of-the-art agentic memory with recall, ingest, and knowledge graph context",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "cortex-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist/*.js",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.21.1",
+    "zod": "^3.25.46"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "tsx": "^4.19.4",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

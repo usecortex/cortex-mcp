@@ -1,0 +1,78 @@
+/**
+ * Structured logger for Cortex MCP Server.
+ * Outputs to stderr to avoid interfering with STDIO transport.
+ */
+
+export enum LogLevel {
+	DEBUG = 0,
+	INFO = 1,
+	WARN = 2,
+	ERROR = 3,
+}
+
+const LOG_LEVEL_NAMES: Record<LogLevel, string> = {
+	[LogLevel.DEBUG]: "DEBUG",
+	[LogLevel.INFO]: "INFO",
+	[LogLevel.WARN]: "WARN",
+	[LogLevel.ERROR]: "ERROR",
+};
+
+function getLogLevel(): LogLevel {
+	const level = process.env.CORTEX_LOG_LEVEL?.toUpperCase();
+	switch (level) {
+		case "DEBUG":
+			return LogLevel.DEBUG;
+		case "INFO":
+			return LogLevel.INFO;
+		case "WARN":
+			return LogLevel.WARN;
+		case "ERROR":
+			return LogLevel.ERROR;
+		default:
+			return LogLevel.ERROR;
+	}
+}
+
+const currentLogLevel = getLogLevel();
+
+function formatMessage(
+	level: LogLevel,
+	message: string,
+	meta?: Record<string, unknown>,
+): string {
+	const timestamp = new Date().toISOString();
+	const levelName = LOG_LEVEL_NAMES[level];
+	if (meta && Object.keys(meta).length > 0) {
+		try {
+			return `[${timestamp}] [cortex-mcp] ${levelName}: ${message} ${JSON.stringify(meta)}`;
+		} catch {
+			return `[${timestamp}] [cortex-mcp] ${levelName}: ${message} [unstringifiable]`;
+		}
+	}
+	return `[${timestamp}] [cortex-mcp] ${levelName}: ${message}`;
+}
+
+function log(
+	level: LogLevel,
+	message: string,
+	meta?: Record<string, unknown>,
+): void {
+	if (level >= currentLogLevel) {
+		console.error(formatMessage(level, message, meta));
+	}
+}
+
+export const logger = {
+	debug(message: string, meta?: Record<string, unknown>): void {
+		log(LogLevel.DEBUG, message, meta);
+	},
+	info(message: string, meta?: Record<string, unknown>): void {
+		log(LogLevel.INFO, message, meta);
+	},
+	warn(message: string, meta?: Record<string, unknown>): void {
+		log(LogLevel.WARN, message, meta);
+	},
+	error(message: string, meta?: Record<string, unknown>): void {
+		log(LogLevel.ERROR, message, meta);
+	},
+};
