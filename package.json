@@ -1,6 +1,6 @@
 {
-  "name": "@anthropic/cortex-mcp",
-  "version": "1.0.0",
+  "name": "@usecortex_ai/mcp",
+  "version": "0.0.1",
   "description": "MCP server for Cortex AI — State-of-the-art agentic memory with recall, ingest, and knowledge graph context",
   "license": "MIT",
   "type": "module",

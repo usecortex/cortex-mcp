@@ -55,7 +55,7 @@ List all ingested sources in Cortex AI memory.
   "mcpServers": {
     "cortex": {
       "command": "npx",
-      "args": ["-y", "@anthropic/cortex-mcp"],
+      "args": ["-y", "@usecortex_ai/mcp@0.0.1"],
       "env": {
         "CORTEX_API_KEY": "your-api-key",
         "CORTEX_TENANT_ID": "your-tenant-id"
@@ -77,7 +77,7 @@ List all ingested sources in Cortex AI memory.
   "mcpServers": {
     "cortex": {
       "command": "npx",
-      "args": ["-y", "@anthropic/cortex-mcp"],
+      "args": ["-y", "@usecortex_ai/mcp@0.0.1"],
       "env": {
         "CORTEX_API_KEY": "your-api-key",
         "CORTEX_TENANT_ID": "your-tenant-id"
@@ -97,7 +97,7 @@ Add to `.vscode/mcp.json`:
     "cortex": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "@anthropic/cortex-mcp"],
+      "args": ["-y", "@usecortex_ai/mcp@0.0.1"],
       "env": {
         "CORTEX_API_KEY": "your-api-key",
         "CORTEX_TENANT_ID": "your-tenant-id"
@@ -116,7 +116,7 @@ To partition data, set the `CORTEX_SUB_TENANT_ID` environment variable:
   "mcpServers": {
     "cortex": {
       "command": "npx",
-      "args": ["-y", "@anthropic/cortex-mcp"],
+      "args": ["-y", "@usecortex_ai/mcp@0.0.1"],
       "env": {
         "CORTEX_API_KEY": "your-api-key",
         "CORTEX_TENANT_ID": "your-tenant-id",
